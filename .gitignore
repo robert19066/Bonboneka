@@ -1,0 +1,4 @@
+# special .gitignore file for the project
+
+venv/
+test/
