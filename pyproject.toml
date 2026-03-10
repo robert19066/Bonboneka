@@ -4,13 +4,13 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "bonboneka"
-version = "0.1.0"
+version = "0.1.5"
 description = "Bundle HTML/CSS/JS into an Android WebView app"
 readme = "README.md"
 requires-python = ">=3.10"
 license = {text = "MIT"}
 authors = [
-    {name = "Brickboss", email = "info@example.com"}
+    {name = "robert19066(Brickboss)", email = "andronic.robert12@gmail.com"}
 ]
 keywords = ["android", "webview", "app", "builder", "html", "css", "javascript"]
 classifiers = [
