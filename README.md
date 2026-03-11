@@ -98,5 +98,5 @@ List of comands:
 #### To note: Gitlink is in BETA and has not undergone rigorous testing, it might break/not work.
 
 # Version: .
-- Github: 0.1.6 "Antoneta" `cli.py` version patch, Toml and README Patch.
-- PiPy package version: 0.1.6 "Antoneta" `cli.py` version patch, Toml and README Patch.
+- Github: 0.1.65 "Antoneta" `cli.py` version patch, Toml and README Patch.
+- PiPy package version: 0.1.65 "Antoneta" `cli.py` version patch, Toml and README Patch.
