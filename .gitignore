@@ -2,3 +2,7 @@
 
 venv/
 test/
+dev/
+dist/
+.apk
+.in
