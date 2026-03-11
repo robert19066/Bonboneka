@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "bonboneka"
-version = "0.1.5"
+version = "0.1.6"
 description = "Bundle HTML/CSS/JS into an Android WebView app"
 readme = "README.md"
 requires-python = ">=3.10"
@@ -40,6 +40,6 @@ dev = [
 bomk = "bomk.cli:main"
 
 [project.urls]
-Homepage = "https://github.com/yourusername/bonboneka"
-"Bug Reports" = "https://github.com/yourusername/bonboneka/issues"
-"Source Code" = "https://github.com/yourusername/bonboneka"
+Homepage = "https://github.com/robert19066/Bonboneka"
+"Bug Reports" = "https://github.com/robert19066/Bonboneka/issues"
+"Source Code" = "https://github.com/robert19066/Bonboneka"

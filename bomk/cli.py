@@ -51,7 +51,7 @@ def _normalize_argv(argv: list[str]) -> list[str]:
 def _build_parser() -> argparse.ArgumentParser:
     p = argparse.ArgumentParser(
         prog="bomk",
-        description="Bonboneka Ver 1.0 'Antoneta' - Bundle HTML/CSS/JS into an Android WebView app",
+        description="Bonboneka Ver 1.6 'Antoneta' - Bundle HTML/CSS/JS into an Android WebView app",
     )
     sub = p.add_subparsers(dest="command")
 

@@ -29,6 +29,7 @@ bomk create <path/to/folder> [options]
 - `/s`	Silent mode: Suppress all terminal output.
 - `/verbose`	Verbose mode: Show detailed build logs.
 - `-o <dir>`	Output: Specify the directory for the generated APK.
+- `--icon <path>`   Icon: Set a custom icon for the app.
 
 # File Naming Convention
 
@@ -78,7 +79,6 @@ Bonboneka will:
 - Build the APK automatically
 
 # `bomk doctor` - Troubleshooting advisor
-
 The `bomk doctor` command will troubleshoot any **valid** Bonboneka projects.
 Usage:
 ```bash
@@ -98,5 +98,5 @@ List of comands:
 #### To note: Gitlink is in BETA and has not undergone rigorous testing, it might break/not work.
 
 # Version: .
-- Github: 0.1.5 "Antoneta" Toml and README Patch.
-- PiPy package version: 0.1.5 "Antoneta" Toml Patch and README Patch.
+- Github: 0.1.6 "Antoneta" `cli.py` version patch, Toml and README Patch.
+- PiPy package version: 0.1.6 "Antoneta" `cli.py` version patch, Toml and README Patch.
