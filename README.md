@@ -181,7 +181,7 @@ bomk gitlink <template> --disengage                        # Reset to default or
 
 ---
 
-## **[NEW]** B0`MK Core 3.0
+## **[NEW]** B0MK Core 3.0
 Introducing the new-and-improved B0MK Core 3.0, now with Flow protocol support, improved error handling, and a shiny new codebase. It still keeps suport for StatiX, but Flow is the future.
 
 Why am I so exited? Because Flow is a much more robust and intuitive protocol that decouples file grouping from naming conventions, making it easier to manage complex projects and avoid naming conflicts. Plus, the new codebase is cleaner and more maintainable, which means faster development and fewer bugs in the long run.
