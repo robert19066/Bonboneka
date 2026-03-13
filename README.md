@@ -31,7 +31,7 @@ bomk create <path/to/folder> [options]
 - `-o <dir>`	Output: Specify the directory for the generated APK.
 - `--icon <path>`   Icon: Set a custom icon for the app.
 
-# File Naming Convention
+# File Naming Convention(StatiX)
 
 To define which bundle a file belongs to, tag the filename with _$<N> before the extension.
 
