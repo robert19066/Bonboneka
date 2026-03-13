@@ -1,5 +1,8 @@
 [![20260310-2134-Image-Generation-simple-compose-01kkckwg2fe99angdtynps6sv9.png](https://i.postimg.cc/8PsQC0NB/20260310-2134-Image-Generation-simple-compose-01kkckwg2fe99angdtynps6sv9.png)](https://postimg.cc/SJ0tTVXJ)
 # 🍬 Bonboneka (bomk)
+- **IMPORTANT:** B0MK CORE IS UNDERGOING ITS MASSIVE 3.0 LAUNCH for the next Bonboneka drop. To stop warnings add a div into the html file `<div class="ignorewarnings"</div>`
+-----------
+
 
 Bonboneka allows you to bundle your HTML, CSS, and JS assets into a native Android WebView app with a single command(yea its that cool). 
 Why did i do this? Because its REALLY hard to convert a website into an (android) app, and i wanted to make it easier for everyone.(yeah its really straightforward), JUST 1 COMMAND.
