@@ -4,12 +4,17 @@ bomk/inject.py – bundle HTML/CSS/JS groups and inject them into the
 
 The assets dir is expected to contain only a placeholder.txt file.
 All previous contents are wiped and replaced with the bundled HTML files.
+
+IMPORTANT: output filenames intentionally keep the _$N shebang tag so the
+Android template can locate the entry-point via its endsWith("_$1.html")
+scan.  Do NOT strip shebangs here.
 """
 
 import re
 from pathlib import Path
 
-from .lib import strip_shebang, b64_data_uri, Logger
+from .lib    import strip_shebang, b64_data_uri, Logger
+from .minify import minify_html
 
 
 # ── Bundler ───────────────────────────────────────────────────────────────────
@@ -22,10 +27,13 @@ def bundle_group(
     """
     Inline all CSS/JS into the HTML and base64-encode any other assets.
     Returns (output_filename, html_string).
+
+    The output filename KEEPS the _$N shebang tag — the Android template
+    uses it to identify the entry-point file at runtime.
     """
-    html_file = next(f for f in files if f.suffix.lower() == ".html")
-    css_files  = [f for f in files if f.suffix.lower() == ".css"]
-    js_files   = [f for f in files if f.suffix.lower() == ".js"]
+    html_file   = next(f for f in files if f.suffix.lower() == ".html")
+    css_files   = [f for f in files if f.suffix.lower() == ".css"]
+    js_files    = [f for f in files if f.suffix.lower() == ".js"]
     asset_files = [
         f for f in files
         if f.suffix.lower() not in (".html", ".css", ".js")
@@ -53,9 +61,9 @@ def bundle_group(
     if css_files:
         css_block = ""
         for css in css_files:
-            css_block += f"/* ── {strip_shebang(css)} ── */\n{css.read_text(encoding='utf-8')}\n"
+            css_block += css.read_text(encoding="utf-8") + "\n"
             logger and logger.verbose(f"  Inlined CSS: {css.name}")
-        tag = f"<style>\n{css_block}</style>"
+        tag = f"<style>{css_block}</style>"
         html = (
             html.replace("</head>", f"{tag}\n</head>", 1)
             if "</head>" in html else tag + "\n" + html
@@ -65,9 +73,9 @@ def bundle_group(
     if js_files:
         js_block = ""
         for js in js_files:
-            js_block += f"/* ── {strip_shebang(js)} ── */\n{js.read_text(encoding='utf-8')}\n"
+            js_block += js.read_text(encoding="utf-8") + "\n"
             logger and logger.verbose(f"  Inlined JS:  {js.name}")
-        tag = f"<script>\n{js_block}</script>"
+        tag = f"<script>{js_block}</script>"
         html = (
             html.replace("</body>", f"{tag}\n</body>", 1)
             if "</body>" in html else html + "\n" + tag
@@ -87,6 +95,18 @@ def bundle_group(
             )
         logger and logger.verbose(f"  Embedded asset: {asset.name}")
 
+    # ── 6. Minify the final HTML ──────────────────────────────────────────────
+    original_len = len(html.encode("utf-8"))
+    html = minify_html(html)
+    minified_len = len(html.encode("utf-8"))
+    saved = original_len - minified_len
+    pct   = (saved / original_len * 100) if original_len else 0
+    logger and logger.verbose(
+        f"  Minified: {original_len:,} → {minified_len:,} bytes "
+        f"(saved {saved:,} / {pct:.1f}%)"
+    )
+
+    # Keep the original filename including the _$N tag (template needs it)
     output_name = html_file.name
     logger and logger.verbose(
         f"  Group ${group_num}: {[f.name for f in files]} → {output_name}"
@@ -102,8 +122,8 @@ def inject_assets(
     logger: Logger | None = None,
 ) -> None:
     """
-    Clear the assets directory (removing everything except .gitkeep if present)
-    and write all bundled HTML files into it.
+    Clear the assets directory (keeping .gitkeep if present) and write
+    all bundled HTML files into it.
     """
     if not assets_dir.exists():
         raise FileNotFoundError(
@@ -111,13 +131,11 @@ def inject_assets(
             "Check ASSETS_REL_PATH in bomk/config.py"
         )
 
-    # Wipe existing files (leave the dir itself intact)
     for f in assets_dir.iterdir():
         if f.is_file() and f.name != ".gitkeep":
             f.unlink()
             logger and logger.verbose(f"  Removed: {f.name}")
 
-    # Write bundled HTML files
     for name, content in bundled.items():
         (assets_dir / name).write_text(content, encoding="utf-8")
         logger and logger.verbose(f"  Injected: {name}")

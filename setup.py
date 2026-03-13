@@ -2,13 +2,13 @@ from setuptools import setup, find_packages
 
 setup(
     name="bonboneka",
-    version="0.1.0",
+    version="0.2.0",
     description="Bundle HTML/CSS/JS into an Android WebView app",
     long_description=open("README.md").read(),
     long_description_content_type="text/markdown",
-    author="Brickboss",
-    author_email="info@example.com",
-    url="https://github.com/yourusername/bonboneka",
+    author="Brickboss(robert19066)",
+    author_email="andronic.robert12@gmail.com",
+    url="https://github.com/robert19066/Bonboneka",
     license="MIT",
     python_requires=">=3.10",
     packages=find_packages(),
@@ -34,7 +34,7 @@ setup(
     ],
     keywords="android webview app builder html css javascript",
     project_urls={
-        "Bug Reports": "https://github.com/yourusername/bonboneka/issues",
-        "Source": "https://github.com/yourusername/bonboneka",
+        "Bug Reports": "https://github.com/robert19066/Bonboneka/issues",
+        "Source": "https://github.com/robert19066/Bonboneka",
     },
 )
