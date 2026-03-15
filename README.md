@@ -71,7 +71,8 @@ bomk create <path/to/folder> [options]
 | Option | Description |
 |---|---|
 | `-s`, `/s` | Silent mode — suppress all output |
-| `--verbose`, `/verbose` | Verbose mode — show detailed build logs |
+| `--verbose`, `/verbose` | Verbose mode — shows Gradle build logs |
+| `--ultra-verbose`  | Ultra verbose mode, will be removed soon(its useless)
 | `-o <dir>` | Output directory for the generated APK |
 | `--icon <path>` | Custom launcher icon (PNG / JPG / WebP) |
 | `--name <name>` | Override the app name shown on the launcher |
