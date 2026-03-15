@@ -29,24 +29,34 @@ Converting a website into an Android app is genuinely painful. Bonboneka makes i
 
 | Requirement | Notes |
 |---|---|
-| Python 3.10+ | |
+| Python 3.10+ | Well, for installing the tool and running it. |
 | Git | Required for template cloning |
 | Android SDK | Required for APK compilation |
-| Java JDK | Required for Gradle |
+| Java JDK | Required for Gradle(building) |
+| ![Capacitor](https://capacitorjs.com/) | Required for PWA mode |
 
 ---
 
 ## Installation
 
-**Recommended — install from PyPI:**
-```bash
+**Recommended — install from your platform's instalation script**
+```zsh
+chmod +x ./install.sh #For macOS and Linux
+```
+```powershell
+./install.bat #Windows
+```
+
+**Alternative — install from source or from PiPy:(same on both platforms**
+
+```zsh
+pip install -e . (inside the directory)
+```
+
+```zsh
 pip install bonboneka
 ```
 
-**Alternative — install from source:**
-```bash
-pip install -e .
-```
 
 ---
 
