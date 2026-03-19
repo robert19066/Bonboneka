@@ -4,7 +4,7 @@ setup(
     name="bonboneka",
     version="0.2.0",
     description="Bundle HTML/CSS/JS into an Android WebView app",
-    long_description=open("README.md").read(),
+    long_description=open("README.md", encoding="utf-8").read(),
     long_description_content_type="text/markdown",
     author="Brickboss(robert19066)",
     author_email="andronic.robert12@gmail.com",

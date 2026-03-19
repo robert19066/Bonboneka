@@ -120,7 +120,7 @@ goto :success
 call :install_bubblewrap
 echo.
 echo %BOLD%  Installing Bonboneka via pip...%RESET%
-!PYTHON! -m pip install bonboneka -q
+!PYTHON! -m pip install bomk -q
 if errorlevel 1 goto :fail
 echo %GREEN%  OK  Bonboneka installed%RESET%
 goto :success

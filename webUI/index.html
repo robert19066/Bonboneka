@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bonboneka webUI</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Info overlay -->
+<div class="overlay-bg" id="overlay" onclick="closeOverlay()">
+    <div class="info-card" onclick="event.stopPropagation()">
+        <button class="info-close" onclick="closeOverlay()">✕</button>
+        <div class="info-top">
+            <div class="info-name" id="ov-name">--</div>
+            <div class="info-badge" id="ov-diff">Easy</div>
+        </div>
+        <p class="info-desc" id="ov-desc">--</p>
+        <div class="info-meta">
+            <div class="meta-chip">Since <span id="ov-ver">--</span></div>
+            <div class="meta-chip">Difficulty <span id="ov-diff2">--</span></div>
+        </div>
+    </div>
+</div>
+
+
+<div class="container">
+    <header>
+        <h1 class="glow-text">Bonboneka <i>webUI</i></h1>
+        <div class="version-tag" id="version-display">--</div>
+    </header>
+
+    <div class="grid-layout">
+        <aside class="controls">
+            <nav class="tab-nav">
+                <button class="tab-btn active" onclick="switchTab('build',this)">
+                    <span class="tab-icon">⚡</span>Build
+                </button>
+                <button class="tab-btn" onclick="switchTab('flags',this)">
+                    <span class="tab-icon">🚩</span>Flags
+                </button>
+                <button class="tab-btn" onclick="switchTab('git',this)">
+                    <span class="tab-icon">🔗</span>Gitlink
+                    <span class="badge red">Beta</span>
+                </button>
+            </nav>
+
+            <!-- Build Tab -->
+            <div id="tab-build" class="tab-panel active">
+
+                <!-- Header row: label + StatiX/Fluid toggle (hidden when PWA) -->
+                <div class="build-header" id="build-header">
+                    <p class="section-label" style="margin-bottom:0">Create Build</p>
+                    <div class="mode-toggle" id="build-mode-toggle">
+                        <button class="mode-btn active" id="mode-statix" onclick="setBuildMode('statix')">StatiX</button>
+                        <button class="mode-btn" id="mode-fluid" onclick="setBuildMode('fluid')">Fluid</button>
+                    </div>
+                </div>
+
+                <!-- PWA mode header (hidden by default) -->
+                <div class="build-header" id="pwa-header" style="display:none">
+                    <p class="section-label" style="margin-bottom:0">Create Build</p>
+                    <span class="badge" style="font-size:0.7rem;padding:4px 10px">PWA Mode</span>
+                </div>
+
+                <div class="cmd-card holdable"
+                     data-name="bomk create"
+                     data-diff="easy"
+                     data-desc="The primary command. Bundles your web project folder into a signed APK using B0MK Core's internal Gradle pipeline. Supports icons, name overrides, and config files."
+                     data-ver="v1.0">
+                    <div class="cmd-card-top">
+                        <span class="cmd-label" id="create-mode-label">StatiX Build</span>
+                        <span class="hold-hint">Hold for info ↓</span>
+                    </div>
+
+                    <!-- Normal (non-PWA) inputs -->
+                    <div id="normal-build-inputs">
+                        <div class="input-group" style="margin-top:10px">
+                            <label>Project Path</label>
+                            <input type="text" id="path-create" placeholder="path/to/folder" onclick="event.stopPropagation()">
+                        </div>
+                        <div class="input-group" id="fluid-config-row" style="margin-top:10px; display:none">
+                            <label>Config Path <span class="badge" style="margin-left:4px">.bombundlefig</span></label>
+                            <div class="input-row">
+                                <input type="text" id="path-fluid-config" placeholder="path/to/.bombundlefig" onclick="event.stopPropagation()">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- PWA-only input -->
+                    <div id="pwa-build-inputs" style="display:none">
+                        <div class="input-group" style="margin-top:10px">
+                            <label>PWA URL</label>
+                            <input type="text" id="path-pwa" placeholder="https://your-pwa.com" onclick="event.stopPropagation()">
+                        </div>
+                    </div>
+
+                    <button class="exe-btn" style="margin-top:12px;width:100%;display:block" onclick="event.stopPropagation(); runCmd('create')">Run</button>
+                </div>
+
+                <button class="fig-shortcut-btn" style="opacity:0.4;cursor:not-allowed" title="soon">
+                    <span>🫧</span>
+                    <div>
+                        <div class="fig-shortcut-title">.bombundlefig Generator</div>
+                        <div class="fig-shortcut-sub">Coming soon(maybe possibly probably will) :3</div>
+                    </div>
+                    <span class="fig-shortcut-arrow">→</span>
+                </button>
+
+                <div class="divider"></div>
+                <p class="section-label">Doctor</p>
+                <div class="cmd-card holdable"
+                     data-name="bomk doctor"
+                     data-diff="easy"
+                     data-desc="Validates a StatiX project directory and diagnoses common issues: missing manifests, malformed configs, broken asset paths, and SDK version mismatches."
+                     data-ver="v1.2">
+                    <div class="cmd-card-top">
+                        <span class="cmd-label">Doctor <span class="badge">StatiX</span></span>
+                        <span class="hold-hint">Hold for info ↓</span>
+                    </div>
+                    <div class="input-row" style="margin-top:10px">
+                        <input type="text" id="path-doctor" placeholder="path/to/folder" onclick="event.stopPropagation()">
+                        <button class="exe-btn" onclick="event.stopPropagation(); runCmd('doctor')">Diagnose</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Flags Tab -->
+            <div id="tab-flags" class="tab-panel">
+                <p class="section-label">Build Flags</p>
+                <div class="flag-grid">
+                    <label class="flag-card easy holdable" data-name="--pwa" data-diff="easy"
+                           data-desc="Wraps a hosted PWA URL using Capacitor instead of the B0MK Core native bridge." data-ver="v2.0">
+                        <input type="checkbox" id="f-pwa" onchange="onPwaToggle()" onclick="event.stopPropagation()"><span>--pwa</span>
+                    </label>
+                    <label class="flag-card easy holdable" data-name="-s" data-diff="easy"
+                           data-desc="Silent mode. Suppresses all stdout output during the build. Useful for CI pipelines." data-ver="v1.0">
+                        <input type="checkbox" id="f-s" onclick="event.stopPropagation()"><span>-s</span>
+                    </label>
+                    <label class="flag-card med holdable" data-name="--verbose" data-diff="med"
+                           data-desc="Pipes full Gradle build output to stdout. Useful for debugging build failures." data-ver="v1.5">
+                        <input type="checkbox" id="f-v" onclick="event.stopPropagation()"><span>--verbose</span>
+                    </label>
+                    <label class="flag-card hard holdable" data-name="--nobuild" data-diff="hard"
+                           data-desc="Skips APK compilation and outputs the raw prepared Gradle template directory. For advanced users only." data-ver="v2.3">
+                        <input type="checkbox" id="f-nobuild" onclick="event.stopPropagation()"><span>--nobuild</span>
+                    </label>
+                    <label class="flag-card easy holdable" data-name="--image" data-diff="easy"
+                           data-desc="Sets a custom launcher icon for the built APK. Accepts PNG or JPG. Overrides any icon defined in the project manifest." data-ver="v1.3">
+                        <input type="checkbox" id="f-image" onclick="event.stopPropagation()"><span>--image</span>
+                    </label>
+                    <label class="flag-card easy holdable" data-name="--name" data-diff="easy"
+                           data-desc="Overrides the app display name shown on the launcher. Takes priority over the name field in the project manifest." data-ver="v1.0">
+                        <input type="checkbox" id="f-name-flag" onclick="event.stopPropagation()"><span>--name</span>
+                    </label>
+                </div>
+                <div class="divider"></div>
+                <p class="section-label">Options</p>
+                <div class="input-group">
+                    <label>Icon Path</label>
+                    <input type="text" id="opt-icon" placeholder="./icon.png">
+                </div>
+                <div class="input-group" style="margin-top:12px">
+                    <label>App Name Override</label>
+                    <input type="text" id="opt-name" placeholder="My App">
+                </div>
+                <div class="input-group" style="margin-top:12px">
+                    <label>Config Path</label>
+                    <input type="text" id="opt-config" placeholder="./.bombundlefig">
+                </div>
+            </div>
+
+            <!-- Git Tab -->
+            <div id="tab-git" class="tab-panel">
+                <p class="section-label">Gitlink <span class="badge red">Beta</span></p>
+                <p class="desc-text">Link templates to GitHub for auto-commits.</p>
+                <div class="input-group">
+                    <label>Template Name</label>
+                    <input type="text" id="git-tmpl" placeholder="my-template">
+                </div>
+                <div class="input-group" style="margin-top:12px">
+                    <label>Remote URL</label>
+                    <input type="text" id="git-url" placeholder="https://github.com/...">
+                </div>
+                <div class="btn-group" style="margin-top:4px">
+                    <button class="btn btn-ghost" onclick="runGit('--set')">Set Remote</button>
+                    <button class="btn btn-primary" onclick="runGit('--push')">Push</button>
+                </div>
+                <div class="divider"></div>
+                <p class="section-label">Disengage Remote</p>
+                <div class="slider-bg">
+                    <span class="slider-label">SLIDE TO DISENGAGE</span>
+                    <div class="slider-handle" id="git-slider">→</div>
+                </div>
+            </div>
+        </aside>
+
+        <main class="terminal-zone">
+            <div class="terminal-header">
+                <div class="terminal-dots">
+                    <div class="dot dot-r"></div>
+                    <div class="dot dot-y"></div>
+                    <div class="dot dot-g"></div>
+                </div>
+                <span>Background Tasks</span>
+                <div class="status-dot"></div>
+            </div>
+            <div id="terminal-body" class="terminal-body">
+                <div class="line">Ready for input...</div>
+            </div>
+        </main>
+    </div>
+</div>
+<script src="script.js"></script>
+</body>
+</html>

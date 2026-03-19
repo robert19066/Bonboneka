@@ -73,7 +73,7 @@ install_via_setup() {
 
 install_via_pip() {
     step "Installing Bonboneka via pip…"
-    $PYTHON -m pip install bonboneka --quiet
+    $PYTHON -m pip install bomk --quiet
     ok "Bonboneka installed"
 }
 

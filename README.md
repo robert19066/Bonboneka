@@ -1,12 +1,9 @@
-[![Bonboneka V2.0 "Choco-Milk-Sugar Goodness"](https://i.postimg.cc/W4HzC52H/Gemini-Generated-Image-b7ucd2b7ucd2b7uc.png)](https://postimg.cc/GBvbsJTF)
-# 🍬 Bonboneka (`bomk`)
+[![Construction-cat-with-helmet-close-up.png](https://i.postimg.cc/zBsNhp0J/Construction-cat-with-helmet-close-up.png)](https://postimg.cc/bD94cx7M)
+# 🍬 Bomboneka (`bomk`)
 
 > Bundle your HTML, CSS, and JS into a native Android WebView app — with a single command.
 
 ---
-
-> [!WARNING]
-> **B0MK CORE 3.0 is released** You may see warnings during builds if using StatiX. To suppress them, add `<div class="ignorewarnings"></div>` anywhere in your HTML.
 
 ---
 
@@ -22,13 +19,13 @@ Converting a website into an Android app is genuinely painful. Bonboneka makes i
 - **Asset encoding** — Images are automatically converted to Base64 data URIs
 - **Multi-bundle support** — Define multiple entry points using either naming convention
 - **PWA mode** — Wrap any PWA URL into an installable Android APK via Capacitor
+- **Web UI** — A local web interface for building and managing your projects *(its out, not soon, now :D )*
 
 ---
 
 ## Requirements
 
 | Requirement | Notes |
-|---|---|
 | Python 3.10+ | Well, for installing the tool and running it. |
 | Git | Required for template cloning |
 | Android SDK | Required for APK compilation |
@@ -54,7 +51,7 @@ pip install -e . (inside the directory)
 ```
 
 ```zsh
-pip install bonboneka
+pip install bomk # It got changed because I lost my main PyPi. The package bomboneka will not be updated till my main acc is back.
 ```
 
 
@@ -107,7 +104,7 @@ bomk create ./my_app
 
 ---
 
-### Flow *(new in 2.0)*
+### Flow
 
 ![Flow build in terminal](terminal_flow_test.gif)
 
@@ -159,6 +156,12 @@ PWA mode uses **Capacitor**, not B0MK Core. Requires Node.js 14+ and the Capacit
 
 ---
 
+# **NEW - WEBUI(3.0 revolution)**
+![webui screnshod](webuiscreenshot.png)
+
+Due to the command line being verry 👻*spookey doopey gloopey*👻 so I thought "Why don't make an UI". And since WinUI is not crossplatform, I thought "WHY NOT AN WEB UI??". It is cross-platform(excepting for my homies on MS-DOS and UNIX and like IBM OS/2). It looks....fine. Ig its good. The screenshot speaks for itself. I don't need to say anything. lmaoooo.
+#### Start it with `python webUI.py`
+
 ## `bomk doctor`
 
 Validate a Bonboneka project and diagnose common issues.
@@ -192,17 +195,6 @@ bomk gitlink <template> --disengage                        # Reset to default or
 
 ---
 
-## **[NEW]** B0MK Core 3.0
-Introducing the new-and-improved B0MK Core 3.0, now with Flow protocol support, improved error handling, and a shiny new codebase. It still keeps suport for StatiX, but Flow is the future.
-
-Why am I so exited? Because Flow is a much more robust and intuitive protocol that decouples file grouping from naming conventions, making it easier to manage complex projects and avoid naming conflicts. Plus, the new codebase is cleaner and more maintainable, which means faster development and fewer bugs in the long run.
-
-Images:
-
-[![Example error](https://i.postimg.cc/Twj8gPH5/Screenshot-From-2026-03-13-19-48-11.png)](https://postimg.cc/wyBbd9z9)
-
-*B0MK-CORE 3.0 no entry point error screen.(its animated)*
-
 ## Configuration
 
 Edit `bomk/config.py` to customise the build environment:
@@ -220,4 +212,4 @@ MAIN_JAVA_REL_PATH = "app/src/main/java/exampleWV/app/Main.java"
 
 ## Version
 
-**2.0 "Choco-Milk-Sugar Goodness"** — Flow protocol, PWA mode, `--name`, `--config`, Gitlink beta.
+**3.0 "Gloopy Oopy Cat Factory"** — Flow protocol, PWA mode, `--name`, `--config`, Gitlink beta.
