@@ -2,7 +2,6 @@
 # 🍬 Bomboneka (`bomk`)
 
 > Bundle your HTML, CSS, and JS into a native Android WebView app — with a single command.
-
 ---
 
 ---
@@ -213,3 +212,4 @@ MAIN_JAVA_REL_PATH = "app/src/main/java/exampleWV/app/Main.java"
 ## Version
 
 **3.0 "Gloopy Oopy Cat Factory"** — Flow protocol, PWA mode, `--name`, `--config`, Gitlink beta.
+Details about the release cycle: https://gist.github.com/robert19066/21cda8316370cd25df534b55e548d9e8
